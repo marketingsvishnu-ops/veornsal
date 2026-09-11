@@ -1,364 +1,357 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cricket Updates</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Demo</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
+}
 
-    body {
-      background: #f4f6f8;
-      color: #222;
-    }
+body{
+  background:#0f1020;
+  color:white;
+}
 
-    header {
-      background: #0b6b3a;
-      color: white;
-      padding: 20px 8%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+.container{
+  display:flex;
+  flex-direction:row-reverse;
+  min-height:100vh;
+}
 
-    header h1 {
-      font-size: 28px;
-    }
+.demo{
+  width:70%;
+  background:#111;
+  position:relative;
+}
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 20px;
-      font-weight: bold;
-    }
+iframe{
+  width:100%;
+  height:100vh;
+  border:none;
+}
 
-    .hero {
-      background: linear-gradient(135deg, #087f43, #064d2b);
-      color: white;
-      padding: 50px 8%;
-      text-align: center;
-    }
+.right{
+  width:30%;
+  padding:30px 22px;
+  background:linear-gradient(180deg,#181a35,#0b0c18);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow-y:auto;
+}
 
-    .hero h2 {
-      font-size: 38px;
-      margin-bottom: 10px;
-    }
+.box{
+  width:100%;
+  background:rgba(10,10,10,.88);
+  border:1px solid #d4af37;
+  border-radius:22px;
+  padding:26px 20px;
+  text-align:center;
+  box-shadow:0 0 35px rgba(212,175,55,.28);
+}
 
-    .hero p {
-      font-size: 18px;
-    }
+.badge{
+  display:inline-block;
+  background:#d4af37;
+  color:#111;
+  padding:8px 18px;
+  border-radius:30px;
+  font-weight:800;
+  margin-bottom:16px;
+}
 
-    .container {
-      width: 84%;
-      max-width: 1200px;
-      margin: 35px auto;
-    }
+h1{
+  font-size:34px;
+  color:#ffd86b;
+  margin-bottom:10px;
+  text-transform:uppercase;
+}
 
-    .section-title {
-      margin-bottom: 20px;
-      font-size: 26px;
-      color: #0b6b3a;
-    }
+.sub{
+  font-size:17px;
+  line-height:1.5;
+  margin-bottom:22px;
+  color:#eee;
+}
 
-    .matches {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
+.features{
+  display:grid;
+  gap:12px;
+  margin:22px 0;
+}
 
-    .match-card {
-      background: white;
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    }
+.feature{
+  background:linear-gradient(90deg,#1b1b1b,#2b2208);
+  border:1px solid rgba(212,175,55,.55);
+  padding:14px;
+  border-radius:14px;
+  font-size:17px;
+  font-weight:700;
+}
 
-    .status {
-      display: inline-block;
-      background: #e63946;
-      color: white;
-      padding: 5px 10px;
-      border-radius: 20px;
-      font-size: 12px;
-      margin-bottom: 15px;
-    }
+.feature span{
+  color:#ffd86b;
+}
 
-    .status.upcoming {
-      background: #f4a261;
-    }
+/* Signup Button */
+.signup-btn{
+  display:inline-block;
+  margin-top:8px;
+  padding:9px 16px;
+  background:#25D366;
+  color:#fff;
+  text-decoration:none;
+  border-radius:9px;
+  font-size:15px;
+  font-weight:800;
+  border:1px solid #1ebe5d;
+  transition:.3s;
+}
 
-    .team {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 15px 0;
-      font-size: 18px;
-      font-weight: bold;
-    }
+.signup-btn:hover{
+  background:#1ebe5d;
+  transform:scale(1.03);
+}
 
-    .score {
-      color: #0b6b3a;
-    }
+.website-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-top:16px;
+  font-size:14px;
+  font-weight:bold;
+}
 
-    .match-info {
-      color: #777;
-      font-size: 14px;
-      margin-top: 10px;
-    }
+.website-row a{
+  text-decoration:none;
+}
 
-    .news {
-      margin-top: 40px;
-    }
+.website{
+  color:#25D366;
+}
 
-    .news-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
+.whatsapp-small{
+  color:#ffd86b;
+}
 
-    .news-card {
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    }
+.cta{
+  display:block;
+  background:#25D366;
+  color:#fff;
+  text-decoration:none;
+  padding:17px;
+  border-radius:16px;
+  font-size:20px;
+  font-weight:900;
+  margin-top:22px;
+  box-shadow:0 8px 18px rgba(37,211,102,.35);
+  transition:.3s;
+}
 
-    .news-image {
-      height: 150px;
-      background: #0b6b3a;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 45px;
-    }
+.cta:hover{
+  transform:scale(1.03);
+  background:#1ebe5d;
+}
 
-    .news-content {
-      padding: 18px;
-    }
+/* Floating Signup Button */
+.floating-signup{
+  position:absolute;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:50;
+  background:#ff1744;
+  color:#fff;
+  padding:12px 24px;
+  border-radius:8px;
+  font-size:18px;
+  font-weight:900;
+  border:3px solid #fff;
+  cursor:pointer;
+  box-shadow:0 8px 20px rgba(255,23,68,0.6);
+  transition:.3s;
+  text-decoration:none;
+  display:inline-block;
+}
 
-    .news-content h3 {
-      margin-bottom: 10px;
-      font-size: 18px;
-    }
+.floating-signup:hover{
+  transform:translateX(-50%) scale(1.08);
+  background:#ff5722;
+  box-shadow:0 12px 25px rgba(255,23,68,0.8);
+}
 
-    .news-content p {
-      color: #666;
-      line-height: 1.5;
-      font-size: 14px;
-    }
+.trust{
+  margin-top:16px;
+  color:#ccc;
+  font-size:14px;
+  line-height:1.5;
+}
 
-    footer {
-      margin-top: 50px;
-      background: #062f1c;
-      color: white;
-      text-align: center;
-      padding: 25px;
-    }
+.footer{
+  margin-top:18px;
+  font-size:12px;
+  color:#aaa;
+  line-height:1.5;
+}
 
-    @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-        gap: 15px;
-      }
+@media(max-width:768px){
+  .container{
+    flex-direction:column-reverse;
+  }
 
-      nav a {
-        margin: 0 8px;
-      }
+  .demo,
+  .right{
+    width:100%;
+  }
 
-      .hero h2 {
-        font-size: 28px;
-      }
-    }
-  </style>
+  iframe{
+    height:500px;
+  }
+
+  .right{
+    padding:20px;
+  }
+}
+
+@media(max-width:480px){
+  h1{
+    font-size:28px;
+  }
+
+  .sub{
+    font-size:16px;
+  }
+
+  .feature{
+    font-size:16px;
+    padding:12px;
+  }
+
+  .signup-btn{
+    font-size:14px;
+    padding:8px 13px;
+  }
+
+  .cta{
+    font-size:18px;
+    padding:15px;
+  }
+
+  .website-row{
+    flex-direction:column;
+    gap:8px;
+  }
+}
+</style>
+
 </head>
 
 <body>
 
-  <!-- Header -->
-  <header>
-    <h1>🏏 CricketHub</h1>
+<div class="container">
 
-    <nav>
-      <a href="#live">Live</a>
-      <a href="#upcoming">Upcoming</a>
-      <a href="#news">News</a>
-    </nav>
-  </header>
+  <div class="demo">
+    <a href="http://https://d4.the100.co.in/?code=krish222 target="_blank" rel="noopener noreferrer" class="floating-signup">🔥 CLICK ON SIGNUP 🔥</a>
+    <iframe src="http://https://d4.the100.co.in/?code=krish222></iframe>
+  </div>
 
-  <!-- Hero -->
-  <section class="hero">
-    <h2>Latest Cricket Updates</h2>
-    <p>Live scores, match results, upcoming games and cricket news</p>
-  </section>
+  <div class="right">
+    <div class="box">
 
-  <main class="container">
+```
+  <div class="badge">AUTO WEBSITE</div>
 
-    <!-- Live Matches -->
-    <section id="live">
-      <h2 class="section-title">🔴 Live Matches</h2>
+  <h1>Get Your ID Now</h1>
 
-      <div class="matches">
+  <p class="sub">
+    Fast auto website service with easy deposit support.
+    New users can start quickly through WhatsApp.
+  </p>
 
-        <div class="match-card">
-          <span class="status">LIVE</span>
+  <div class="features">http://www.multicric.com/?code=266ice
 
-          <div class="team">
-            <span>🇮🇳 India</span>
-            <span class="score">178/4</span>
-          </div>
+    <div class="feature">
+      Minimum Deposit: <span>₹100 Only</span>
+    </div>
 
-          <div class="team">
-            <span>🇦🇺 Australia</span>
-            <span class="score">165/7</span>
-          </div>
+    <div class="feature">
+      Welcome Bonus: <span>10%</span>
+    </div>
 
-          <p class="match-info">
-            India vs Australia • 18.4 Overs
-          </p>
+    <div class="feature">
+      Auto Website Support:
+      <a
+        class="signup-btn"
+        href="http://https://d4.the100.co.in/?code=krish222
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Click on Signup
+      </a>
+    </div>
 
-          <p class="match-info">
-            India need 13 runs to win
-          </p>
-        </div>
+    <div class="feature">
+      Quick Help:
+      <span>Deposit &amp; Withdrawal Support</span>
+    </div>
 
-        <div class="match-card">
-          <span class="status">LIVE</span>
+  </div>
 
-          <div class="team">
-            <span>🏴 England</span>
-            <span class="score">142/3</span>
-          </div>
+  <div class="website-row">
 
-          <div class="team">
-            <span>🇿🇦 South Africa</span>
-            <span class="score">Yet to bat</span>
-          </div>
+    <a
+      class="website"
+      href="http://https://d4.the100.co.in/?code=krish222
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      🌐 http://www.multicric.com/?code=266ice
+    </a>
 
-          <p class="match-info">
-            England vs South Africa • 16.2 Overs
-          </p>
+    <a
+      class="whatsapp-small"
+      href="https://wa.me/+13093982426"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      💬 WhatsApp
+    </a>
 
-          <p class="match-info">
-            England batting first
-          </p>
-        </div>
+  </div>
 
-      </div>
-    </section>
+  <a
+    class="cta"
+    href="https://wa.me/+13093982426?text=Hello%20I%20want%20new%20the100%20ID"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    📲 WhatsApp Now
+  </a>
 
+  <p class="trust">
+    ✅ Trusted the100 Support<br>
+    ✅ Simple Process<br>
+    ✅ Fast Response
+  </p>
 
-    <!-- Upcoming Matches -->
-    <section id="upcoming" style="margin-top: 40px;">
-      <h2 class="section-title">📅 Upcoming Matches</h2>
+  <div class="footer">
+    18+ Only | Play Responsibly | Follow Your Local Laws | T&amp;C Apply
+  </div>
 
-      <div class="matches">
+</div>
+```
 
-        <div class="match-card">
-          <span class="status upcoming">UPCOMING</span>
+  </div>
 
-          <div class="team">
-            <span>🇵🇰 Pakistan</span>
-            <span>VS</span>
-          </div>
-
-          <div class="team">
-            <span>🇳🇿 New Zealand</span>
-          </div>
-
-          <p class="match-info">
-            Tomorrow • 7:30 PM
-          </p>
-
-          <p class="match-info">
-            T20 International
-          </p>
-        </div>
-
-        <div class="match-card">
-          <span class="status upcoming">UPCOMING</span>
-
-          <div class="team">
-            <span>🇱🇰 Sri Lanka</span>
-            <span>VS</span>
-          </div>
-
-          <div class="team">
-            <span>🇧🇩 Bangladesh</span>
-          </div>
-
-          <p class="match-info">
-            Saturday • 3:00 PM
-          </p>
-
-          <p class="match-info">
-            ODI International
-          </p>
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- Cricket News -->
-    <section id="news" class="news">
-
-      <h2 class="section-title">📰 Latest Cricket News</h2>
-
-      <div class="news-grid">
-
-        <div class="news-card">
-          <div class="news-image">🏏</div>
-
-          <div class="news-content">
-            <h3>India Announces Squad</h3>
-            <p>
-              India has announced its squad for the upcoming
-              international cricket series.
-            </p>
-          </div>
-        </div>
-
-        <div class="news-card">
-          <div class="news-image">🔥</div>
-
-          <div class="news-content">
-            <h3>Star Batter Hits Century</h3>
-            <p>
-              A brilliant century helps the team post a huge
-              total in today's match.
-            </p>
-          </div>
-        </div>
-
-        <div class="news-card">
-          <div class="news-image">🏆</div>
-
-          <div class="news-content">
-            <h3>Tournament Begins</h3>
-            <p>
-              The latest cricket tournament is set to begin
-              with several exciting matches.
-            </p>
-          </div>
-        </div>
-
-      </div>
-
-    </section>
-
-  </main>
-
-  <!-- Footer -->
-  <footer>
-    <p>© 2026 CricketHub • All Rights Reserved</p>
-  </footer>
+</div>
 
 </body>
 </html>
