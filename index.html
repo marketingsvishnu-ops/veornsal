@@ -1,63 +1,364 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cricket Match Updates</title>
-  <meta name="description" content="Explore cricket match schedules, team news and player stories in one place.">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307192f'/%3E%3Ccircle cx='32' cy='34' r='17' fill='white'/%3E%3Cpath d='M22 22c8 7 12 17 14 28M28 18c9 7 14 17 16 27' stroke='%232da9e9' stroke-width='3' fill='none'/%3E%3C/svg%3E">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cricket Updates</title>
+
   <style>
-    :root { color-scheme: dark; --navy:#061426; --blue:#178ed1; --sky:#6ed3ff; --ink:#eaf7ff; --muted:#a9c4d8; --line:rgba(136,210,247,.18); }
-    * { box-sizing:border-box; }
-    body { margin:0; min-height:100vh; background:radial-gradient(circle at 80% 5%,#123c60 0,transparent 34%),linear-gradient(155deg,#030b14,#07192f 55%,#06101e); color:var(--ink); font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif; }
-    .shell { width:min(1120px,calc(100% - 32px)); margin:auto; }
-    header { display:flex; align-items:center; justify-content:space-between; padding:22px 0; border-bottom:1px solid var(--line); }
-    .brand { display:flex; align-items:center; gap:11px; font-weight:760; letter-spacing:-.02em; }
-    .ball { width:34px; height:34px; border-radius:50%; background:white; box-shadow:0 0 0 5px rgba(110,211,255,.1); position:relative; }
-    .ball:after { content:""; position:absolute; left:15px; top:3px; width:4px; height:28px; border-left:2px solid var(--blue); border-right:2px solid var(--blue); transform:rotate(-18deg); }
-    .nav-note { color:var(--muted); font-size:.9rem; }
-    main { display:grid; grid-template-columns:1.08fr .92fr; gap:54px; align-items:center; padding:64px 0 46px; }
-    .eyebrow { color:var(--sky); font-weight:700; letter-spacing:.08em; text-transform:uppercase; font-size:.82rem; }
-    h1 { font-size:clamp(2.7rem,6vw,5.5rem); line-height:.95; letter-spacing:-.06em; margin:16px 0 22px; max-width:780px; }
-    .intro { font-size:clamp(1.05rem,2vw,1.25rem); line-height:1.65; color:var(--muted); max-width:620px; }
-    .tags { display:flex; flex-wrap:wrap; gap:10px; margin-top:30px; }
-    .tag { padding:10px 14px; border:1px solid var(--line); background:rgba(16,57,88,.45); border-radius:999px; font-size:.92rem; }
-    .hero { width:100%; aspect-ratio:1; object-fit:cover; border-radius:28px; border:1px solid rgba(110,211,255,.25); box-shadow:0 30px 80px rgba(0,0,0,.38); }
-    .section { padding:32px 0 72px; }
-    .section h2 { font-size:1.8rem; margin:0 0 20px; letter-spacing:-.03em; }
-    .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-    .card { padding:24px; min-height:170px; background:linear-gradient(145deg,rgba(21,60,91,.78),rgba(7,25,47,.82)); border:1px solid var(--line); border-radius:20px; }
-    .card span { display:inline-grid; place-items:center; width:36px; height:36px; border-radius:10px; background:rgba(110,211,255,.12); color:var(--sky); font-weight:800; }
-    .card h3 { margin:19px 0 8px; font-size:1.08rem; }
-    .card p { margin:0; color:var(--muted); line-height:1.55; }
-    footer { padding:24px 0 34px; border-top:1px solid var(--line); color:#7f9db3; font-size:.88rem; }
-    @media (max-width:760px) { header{padding:17px 0}.nav-note{display:none} main{grid-template-columns:1fr;gap:30px;padding:42px 0 30px}.hero{order:-1;border-radius:20px} .cards{grid-template-columns:1fr}.section{padding-bottom:46px} }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f4f6f8;
+      color: #222;
+    }
+
+    header {
+      background: #0b6b3a;
+      color: white;
+      padding: 20px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 28px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: bold;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #087f43, #064d2b);
+      color: white;
+      padding: 50px 8%;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 18px;
+    }
+
+    .container {
+      width: 84%;
+      max-width: 1200px;
+      margin: 35px auto;
+    }
+
+    .section-title {
+      margin-bottom: 20px;
+      font-size: 26px;
+      color: #0b6b3a;
+    }
+
+    .matches {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .match-card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .status {
+      display: inline-block;
+      background: #e63946;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      margin-bottom: 15px;
+    }
+
+    .status.upcoming {
+      background: #f4a261;
+    }
+
+    .team {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 15px 0;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .score {
+      color: #0b6b3a;
+    }
+
+    .match-info {
+      color: #777;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    .news {
+      margin-top: 40px;
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .news-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .news-image {
+      height: 150px;
+      background: #0b6b3a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 45px;
+    }
+
+    .news-content {
+      padding: 18px;
+    }
+
+    .news-content h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .news-content p {
+      color: #666;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    footer {
+      margin-top: 50px;
+      background: #062f1c;
+      color: white;
+      text-align: center;
+      padding: 25px;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      nav a {
+        margin: 0 8px;
+      }
+
+      .hero h2 {
+        font-size: 28px;
+      }
+    }
   </style>
 </head>
+
 <body>
-  <div class="shell">
-    <header>
-      <div class="brand"><span class="ball" aria-hidden="true"></span><span>Cricket Updates</span></div>
-      <div class="nav-note">Schedules · Team news · Player stories</div>
-    </header>
-    <main>
-      <section>
-        <div class="eyebrow">Cricket coverage</div>
-        <h1>Cricket Match Updates</h1>
-        <p class="intro">Explore match schedules, team news and player stories in one clear, easy-to-read place.</p>
-        <div class="tags" aria-label="Coverage topics"><span class="tag">Match schedules</span><span class="tag">Team news</span><span class="tag">Player stories</span></div>
-      </section>
-      <img class="hero" src="cricket-hero.jpg" alt="Cricket bat, ball and stumps in a stadium">
-    </main>
-    <section class="section" aria-labelledby="coverage-heading">
-      <h2 id="coverage-heading">What you can explore</h2>
-      <div class="cards">
-        <article class="card"><span>01</span><h3>Match schedules</h3><p>Keep upcoming fixtures and match-day timings organised.</p></article>
-        <article class="card"><span>02</span><h3>Team news</h3><p>Read concise updates about squads, preparation and selection.</p></article>
-        <article class="card"><span>03</span><h3>Player stories</h3><p>Discover career highlights, milestones and notable performances.</p></article>
+
+  <!-- Header -->
+  <header>
+    <h1>🏏 CricketHub</h1>
+
+    <nav>
+      <a href="#live">Live</a>
+      <a href="#upcoming">Upcoming</a>
+      <a href="#news">News</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h2>Latest Cricket Updates</h2>
+    <p>Live scores, match results, upcoming games and cricket news</p>
+  </section>
+
+  <main class="container">
+
+    <!-- Live Matches -->
+    <section id="live">
+      <h2 class="section-title">🔴 Live Matches</h2>
+
+      <div class="matches">
+
+        <div class="match-card">
+          <span class="status">LIVE</span>
+
+          <div class="team">
+            <span>🇮🇳 India</span>
+            <span class="score">178/4</span>
+          </div>
+
+          <div class="team">
+            <span>🇦🇺 Australia</span>
+            <span class="score">165/7</span>
+          </div>
+
+          <p class="match-info">
+            India vs Australia • 18.4 Overs
+          </p>
+
+          <p class="match-info">
+            India need 13 runs to win
+          </p>
+        </div>
+
+        <div class="match-card">
+          <span class="status">LIVE</span>
+
+          <div class="team">
+            <span>🏴 England</span>
+            <span class="score">142/3</span>
+          </div>
+
+          <div class="team">
+            <span>🇿🇦 South Africa</span>
+            <span class="score">Yet to bat</span>
+          </div>
+
+          <p class="match-info">
+            England vs South Africa • 16.2 Overs
+          </p>
+
+          <p class="match-info">
+            England batting first
+          </p>
+        </div>
+
       </div>
     </section>
-    <footer>Cricket Updates · Independent sports information</footer>
-  </div>
+
+
+    <!-- Upcoming Matches -->
+    <section id="upcoming" style="margin-top: 40px;">
+      <h2 class="section-title">📅 Upcoming Matches</h2>
+
+      <div class="matches">
+
+        <div class="match-card">
+          <span class="status upcoming">UPCOMING</span>
+
+          <div class="team">
+            <span>🇵🇰 Pakistan</span>
+            <span>VS</span>
+          </div>
+
+          <div class="team">
+            <span>🇳🇿 New Zealand</span>
+          </div>
+
+          <p class="match-info">
+            Tomorrow • 7:30 PM
+          </p>
+
+          <p class="match-info">
+            T20 International
+          </p>
+        </div>
+
+        <div class="match-card">
+          <span class="status upcoming">UPCOMING</span>
+
+          <div class="team">
+            <span>🇱🇰 Sri Lanka</span>
+            <span>VS</span>
+          </div>
+
+          <div class="team">
+            <span>🇧🇩 Bangladesh</span>
+          </div>
+
+          <p class="match-info">
+            Saturday • 3:00 PM
+          </p>
+
+          <p class="match-info">
+            ODI International
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- Cricket News -->
+    <section id="news" class="news">
+
+      <h2 class="section-title">📰 Latest Cricket News</h2>
+
+      <div class="news-grid">
+
+        <div class="news-card">
+          <div class="news-image">🏏</div>
+
+          <div class="news-content">
+            <h3>India Announces Squad</h3>
+            <p>
+              India has announced its squad for the upcoming
+              international cricket series.
+            </p>
+          </div>
+        </div>
+
+        <div class="news-card">
+          <div class="news-image">🔥</div>
+
+          <div class="news-content">
+            <h3>Star Batter Hits Century</h3>
+            <p>
+              A brilliant century helps the team post a huge
+              total in today's match.
+            </p>
+          </div>
+        </div>
+
+        <div class="news-card">
+          <div class="news-image">🏆</div>
+
+          <div class="news-content">
+            <h3>Tournament Begins</h3>
+            <p>
+              The latest cricket tournament is set to begin
+              with several exciting matches.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 CricketHub • All Rights Reserved</p>
+  </footer>
+
 </body>
 </html>
